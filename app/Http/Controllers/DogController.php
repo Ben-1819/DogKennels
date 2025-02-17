@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dog;
+use App\Models\Owner;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class DogController extends Controller
     public function create()
     {
         log::info('Showing view to create new dog');
-        return view('dog.create');
+        $owner = Owner::all();
+        return view('dog.create', compact('owner'));
     }
 
     /**
