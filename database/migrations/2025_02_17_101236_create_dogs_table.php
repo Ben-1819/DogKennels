@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('training_level');
             $table->string('temperment');
-            $table->string('extra_info');
+            $table->string('extra_info')->nullable();
             $table->integer('feed_per_day');
             $table->timestamps();
         });
