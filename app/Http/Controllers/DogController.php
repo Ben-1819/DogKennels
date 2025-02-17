@@ -80,7 +80,8 @@ class DogController extends Controller
     {
         log::info('Showing dog.show for dog with id: {id}', ['id' => $id]);
         $dog = Dog::find($id);
-        return view('dog.show', compact('dog'));
+        $owner = Owner::where('id', $dog->owner_id);
+        return view('dog.show', compact('dog', 'owner'));
     }
 
     /**
