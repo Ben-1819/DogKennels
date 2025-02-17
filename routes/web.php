@@ -3,6 +3,7 @@
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\DogController;
 use App\Http\Controllers\KennelController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,4 +39,15 @@ Route::name('kennel.')->group(function(){
     Route::get('/kennel/{id}/edit', [KennelController::class, 'edit'])->name('edit');
     Route::put('/kennel/{id}', [KennelController::class, 'update'])->name('update');
     Route::delete('/kennel/{id}', [KennelController::class, 'destroy'])->name('destroy');
+});
+
+
+Route::name('booking.')->group(function(){
+    Route::get('/booking', [BookingController::class, 'index'])->name('index');
+    Route::get('/booking/create', [BookingController::class, 'create'])->name('create');
+    Route::post('/booking', [BookingController::class, 'store'])->name('store');
+    Route::get('/booking/{id}', [BookingController::class, 'show'])->name('show');
+    Route::get('/booking/{id}/edit', [BookingController::class, 'edit'])->name('edit');
+    Route::put('/booking/{id}', [BookingController::class, 'update'])->name('update');
+    Route::delete('/booking/{id}', [BookingController::class, 'destory'])->name('destroy');
 });
