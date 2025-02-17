@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained('owners');
             $table->string('name');
-            $table->string('Breed');
+            $table->string('breed');
             $table->string('size');
             $table->integer('age');
             $table->string('training_level');
