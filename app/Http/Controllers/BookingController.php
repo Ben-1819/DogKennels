@@ -48,6 +48,52 @@ class BookingController extends Controller
 
         log::info('Getting owner_id from the entered dog_id');
         $owner_id = Owner::find($request->dog_id)->select('id');
+
+        log::info('Get size of dog using where function');
+        $dog_size = Dog::where('id', $request->dog_id)->get('size');
+        switch ($dog_size){
+            case "Small":
+                log::info('Dog is small: $ds set to 1');
+                $ds = 1;
+                break;
+            case "Medium":
+                log::info('Dog is medium: $ds set to 2');
+                $ds = 2;
+                break;
+            case "Large":
+                log::info('Dog is Large: $ds set to 3');
+                $ds = 3;
+                break;
+        }
+
+        log::info('Get size of kennel using where function');
+        $kennel_size = Kennel::where('id', $request->kennel_id)->get('kennel_size');
+        switch ($kennel_size){
+            case "Small":
+                log::info('Kennel is Small: $ks set to 1');
+                $ks = 1;
+                break;
+            case "Medium":
+                log::info('Kennel is Medium: $ks set to 2');
+                $ks = 2;
+                break;
+            case "Large":
+                log::info('Kennel is Large: $ks set to 3');
+                $ks = 3;
+                break;
+        }
+
+        if ($ds <= $ks){
+            $sizeCheck = true;
+            log::info('Kennel is large enough for dog: $sizeCheck set to {sizeCheck}', ['sizecheck' => $sizeCheck]);
+        }
+
+        else{
+            $sizeCheck = false;
+            log::info('Kennel is too small for dog: $sizeCheck set to {sizeCheck}', ['sizeCheck' => $sizeCheck]);
+        }
+
+
         log::info('Creating new booking');
         $booking = new Booking([
             'owner_id' => $owner_id,
