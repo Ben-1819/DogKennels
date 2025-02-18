@@ -32,4 +32,12 @@
         </button>
     </div>
 
+
+    <div>
+        <button>
+            <a href="{{route('weather')}}">
+                View Weather
+            </a>
+        </button>
+    </div>
 </div>

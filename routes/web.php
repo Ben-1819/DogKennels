@@ -4,11 +4,15 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\DogController;
 use App\Http\Controllers\KennelController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/weather', [WeatherController::class, 'weatherForecast'])->name('weather');
 
 Route::name('owner.')->group(function(){
     Route::get('/owner', [OwnerController::class, 'index'])->name('index');
