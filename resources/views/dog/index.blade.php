@@ -5,7 +5,7 @@
     <h1 class="title">All Dogs</h1>
 
     <div>
-        <table class="index-table">
+        <table class="index-table-large">
             <thead>
                 <tr>
                     <th>Dog ID</th>

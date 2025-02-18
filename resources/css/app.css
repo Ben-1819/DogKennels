@@ -21,3 +21,12 @@
     margin-top: 25px;
     margin-left: 500px;
 }
+
+.index-table-large, th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 25px;
+    margin-left: 250px;
+}
