@@ -53,19 +53,19 @@ Route::name('booking.')->group(function(){
 });
 
 Route::name('menu.')->group(function(){
-    Route::get('/owner/menu', function(){
+    Route::get('/menu/owner', function(){
         return view('owner.menu');
     })->name('owner');
 
-    Route::get('/dog/menu', function(){
+    Route::get('/menu/dog', function(){
         return view('dog.menu');
     })->name('dog');
 
-    Route::get('/kennel/menu', function(){
+    Route::get('/menu/kennel', function(){
         return view('kennel.menu');
     })->name('kennel');
 
-    Route::get('/booking/menu', function(){
+    Route::get('/menu/booking', function(){
         return view('booking.menu');
     })->name('booking');
 });
