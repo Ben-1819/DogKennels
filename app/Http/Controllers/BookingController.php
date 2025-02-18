@@ -94,7 +94,7 @@ class BookingController extends Controller
         $owner = Owner::all();
         $dogname = Dog::find($booking->dog_id);
         $dog = Dog::all();
-        $kennel = Kennel::find($booking->kennel_id);
+        $kennel = Kennel::all();
         log::info('Returning booking.edit for booking: {id}', ['id' => $id]);
         return view('booking.edit', compact('booking', 'owner', 'dog', 'kennel', 'dogname', 'ownername'));
     }
