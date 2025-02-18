@@ -20,4 +20,18 @@ class WeatherController extends Controller
 
         return view('weather', ['weatherData' => $data]);
     }
+
+    public static function getWeather(){
+        $apiKey = config('weather.key');
+
+        $client = new Client();
+
+        $apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Lisburn&units=metric&appid={$apiKey}";
+
+        $response = $client->get($apiUrl);
+
+        $weatherData = json_decode($response->getBody(), true);
+
+        return $weatherData;
+    }
 }
