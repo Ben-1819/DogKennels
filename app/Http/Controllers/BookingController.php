@@ -6,8 +6,10 @@ use App\Models\Booking;
 use App\Models\Dog;
 use App\Models\Kennel;
 use App\Models\Owner;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
 class BookingController extends Controller
 {
@@ -98,6 +100,42 @@ class BookingController extends Controller
             log::info('Kennel is too small for dog: $sizeCheck set to {sizeCheck}', ['sizeCheck' => $sizeCheck]);
         }
 
+        log::info('Returning all records from the booking table where the kennel has the same id as the one entered');
+        $kennelCheck = Booking::all()->where('kennel_id', $request->kennel_id);
+
+        log::info('Checking to see if the kennel has been used for any bookings');
+        if(empty($kennelCheck)){
+            log::info('Returning datesfree as true as kennel has never been booked before');
+            $datesfree = true;
+        }
+        else{
+            log::info('Loop through each record in kennelCheck');
+            foreach($kennelCheck as $check){
+                if(Carbon::parse($request->booking_start)->between(Carbon::parse($check->booking_start), Carbon::parse($check->booking_end))){
+                    log::info('Selected booking start date is not available');
+                    $validStart = false;
+                }
+                else{
+                    $validStart = true;
+                }
+                if(Carbon::parse($request->booking_end)->between(Carbon::parse($check->booking_start), Carbon::parse($check->booking_end))){
+                    log::info('Selected booking end date is not available');
+                    $validEnd = false;
+                }
+                else{
+                    $validEnd = true;
+                }
+                if($validStart == false || $validEnd == false){
+                    log::info('Returning to booking.index');
+                    return redirect()->route('booking.index');
+                }
+                else{
+                    $datesfree = true;
+                    break;
+                }
+            }
+        }
+        log::info('Use if statement to ensure the booking meets size validation rules');
         if($sizeCheck == true){
             log::info('Creating new booking');
             $booking = new Booking([
@@ -219,6 +257,42 @@ class BookingController extends Controller
         else{
             $sizeCheck = false;
             log::info('Kennel is too small for dog: $sizeCheck set to {sizeCheck}', ['sizeCheck' => $sizeCheck]);
+        }
+
+        log::info('Returning all records from the booking table where the kennel has the same id as the one entered');
+        $kennelCheck = Booking::all()->where('kennel_id', $request->kennel_id);
+
+        log::info('Checking to see if the kennel has been used for any bookings');
+        if(empty($kennelCheck)){
+            log::info('Returning datesfree as true as kennel has never been booked before');
+            $datesfree = true;
+        }
+        else{
+            log::info('Loop through each record in kennelCheck');
+            foreach($kennelCheck as $check){
+                if(Carbon::parse($request->booking_start)->between(Carbon::parse($check->booking_start), Carbon::parse($check->booking_end))){
+                    log::info('Selected booking start date is not available');
+                    $validStart = false;
+                }
+                else{
+                    $validStart = true;
+                }
+                if(Carbon::parse($request->booking_end)->between(Carbon::parse($check->booking_start), Carbon::parse($check->booking_end))){
+                    log::info('Selected booking end date is not available');
+                    $validEnd = false;
+                }
+                else{
+                    $validEnd = true;
+                }
+                if($validStart == false || $validEnd == false){
+                    log::info('Returning to booking.index');
+                    return redirect()->route('booking.index');
+                }
+                else{
+                    $datesfree = true;
+                    break;
+                }
+            }
         }
 
         if($sizeCheck == true){
