@@ -17,32 +17,32 @@
                     <th>View</th>
                 </tr>
             </thead>
-        </table>
-        <tbody>
-            @if(count($all_bookings) > 0)
-                @foreach($all_bookings as $booking)
+            <tbody>
+                @if(count($all_bookings) > 0)
+                    @foreach($all_bookings as $booking)
+                        <tr>
+                            <td>{{$booking->id}}</td>
+                            <td>{{$booking->owner_id}}</td>
+                            <td>{{$booking->dog_id}}</td>
+                            <td>{{$booking->kennel_id}}</td>
+                            <td>{{$booking->booking_start}}</td>
+                            <td>{{$booking->booking_end}}</td>
+                            <td>
+                                <form action="{{route('booking.show', $booking->id)}}" method="get">
+                                    @csrf
+                                    <button>
+                                        View
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{$booking->id}}</td>
-                        <td>{{$booking->owner_id}}</td>
-                        <td>{{$booking->dog_id}}</td>
-                        <td>{{$booking->kennel_id}}</td>
-                        <td>{{$booking->booking_start}}</td>
-                        <td>{{$booking->booking_end}}</td>
-                        <td>
-                            <form action="{{route('booking.show', $booking->id)}}" method="get">
-                                @csrf
-                                <button>
-                                    View
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="8">No Bookings made</td>
                     </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="8">No Bookings made</td>
-                </tr>
-            @endif
-        </tbody>
+                @endif
+            </tbody>
+        </table>
     </div>
 </div>
