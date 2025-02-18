@@ -4,7 +4,7 @@
 <div>
     <h1 class="title">Add new kennel</h1>
 
-    <form action="{{route('kennel.create')}}" method="post">
+    <form action="{{route('kennel.store')}}" method="post">
         @csrf
         <div>
             <label>Kennel Size:</label>
