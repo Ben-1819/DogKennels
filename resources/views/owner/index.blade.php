@@ -35,6 +35,7 @@
                 <tr>
                     <td colspan="8">No Owners Registered Yet</td>
                 </tr>
+            @endif
         </tbody>
     </table>
 </div>
