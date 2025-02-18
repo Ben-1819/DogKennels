@@ -93,25 +93,32 @@ class BookingController extends Controller
             log::info('Kennel is too small for dog: $sizeCheck set to {sizeCheck}', ['sizeCheck' => $sizeCheck]);
         }
 
+        if($sizeCheck == true){
+            log::info('Creating new booking');
+            $booking = new Booking([
+                'owner_id' => $owner_id,
+                'dog_id' => $request->dog_id,
+                'kennel_id' => $request->kennel_id,
+                'booking_start' => $request->booking_start,
+                'booking_end' => $request->booking_end
+            ]);
+            $booking->save();
 
-        log::info('Creating new booking');
-        $booking = new Booking([
-            'owner_id' => $owner_id,
-            'dog_id' => $request->dog_id,
-            'kennel_id' => $request->kennel_id,
-            'booking_start' => $request->booking_start,
-            'booking_end' => $request->booking_end
-        ]);
-        $booking->save();
+            log::info('New Booking created');
+            log::info('Owner id: {owner_id}', ['owner_id', $owner_id]);
+            log::info('Dog id: {dog_id}', ['dog_id' => $request->dog_id]);
+            log::info('Kennel id: {kennel_id}', ['kennel_id' => $request->kennel_id]);
+            log::info('Booking start date: {booking_start}', ['booking_start' => $request->booking_start]);
+            log::info('Booking end date: {booking_end}', ['booking_end' => $request->booking_end]);
+            log::info('Returning to booking index');
+            return redirect()->route('booking.index');
+        }
 
-        log::info('New Booking created');
-        log::info('Owner id: {owner_id}', ['owner_id', $owner_id]);
-        log::info('Dog id: {dog_id}', ['dog_id' => $request->dog_id]);
-        log::info('Kennel id: {kennel_id}', ['kennel_id' => $request->kennel_id]);
-        log::info('Booking start date: {booking_start}', ['booking_start' => $request->booking_start]);
-        log::info('Booking end date: {booking_end}', ['booking_end' => $request->booking_end]);
-        log::info('Returning to booking index');
-        return redirect()->route('booking.index');
+        else{
+            log::info('Cannot make booking - kennel is not big enough');
+            return redirect()->route('booking.index');
+        }
+
     }
 
     /**
@@ -204,9 +211,8 @@ class BookingController extends Controller
             log::info('Kennel is too small for dog: $sizeCheck set to {sizeCheck}', ['sizeCheck' => $sizeCheck]);
         }
 
-
-
-        log::info('Updating booking');
+        if($sizeCheck == true){
+            log::info('Updating booking');
             $update_booking = Booking::where('id', $request->id)->update([
                 'owner_id' => $owner_id,
                 'dog_id' => $request->dog_id,
@@ -223,6 +229,13 @@ class BookingController extends Controller
             log::info('Booking end date: {booking_end}', ['booking_end' => $request->booking_end]);
             log::info('Returning to booking index');
             return redirect()->route('booking.index');
+        }
+
+        else{
+            log::info('Cannot update booking - kennel is too small');
+            return redirect()->route('booking.index');
+        }
+
     }
 
     /**
