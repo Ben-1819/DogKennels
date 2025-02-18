@@ -47,39 +47,44 @@ class BookingController extends Controller
         ]);
 
         log::info('Getting owner_id from the entered dog_id');
-        $owner_id = Owner::find($request->dog_id)->select('id');
+        $findowner = Dog::find($request->dog_id);
+        $owner_id = $findowner->owner_id;
 
-        log::info('Get size of dog using where function');
-        $dog_size = Dog::where('id', $request->dog_id)->get('size');
-        switch ($dog_size){
-            case "Small":
-                log::info('Dog is small: $ds set to 1');
+        log::info('Get size of dog using find function');
+        $dog_size = Dog::find($request->dog_id);
+        $dogsize = $dog_size->size;
+        log::info('Dog Size is: {dog_size}', ['dog_size' => $dogsize]);
+        switch ($dogsize){
+            case $dogsize == "Small":
                 $ds = 1;
+                log::info('Dog is small: $ds set to {ds}', ['ds' => $ds]);
                 break;
-            case "Medium":
-                log::info('Dog is medium: $ds set to 2');
+            case $dogsize == "Medium":
                 $ds = 2;
+                log::info('Dog is medium: $ds set to {ds}', ['ds' => $ds]);
                 break;
-            case "Large":
-                log::info('Dog is Large: $ds set to 3');
+            case $dogsize == "Large":
                 $ds = 3;
+                log::info('Dog is Large: $ds set to {ds}', ['ds' => $ds]);
                 break;
         }
 
-        log::info('Get size of kennel using where function');
-        $kennel_size = Kennel::where('id', $request->kennel_id)->get('kennel_size');
-        switch ($kennel_size){
-            case "Small":
-                log::info('Kennel is Small: $ks set to 1');
+        log::info('Get size of kennel using find function');
+        $kennel_size = Kennel::find($request->kennel_id);
+        $kennelsize = $kennel_size->kennel_size;
+        log::info('Kennel Size is: {kennelsize}', ['kennelsize' => $kennelsize]);
+        switch ($kennelsize){
+            case $kennelsize == "Small":
                 $ks = 1;
+                log::info('Kennel is Small: $ks set to {ks}', ['ks' => $ks]);
                 break;
-            case "Medium":
-                log::info('Kennel is Medium: $ks set to 2');
+            case $kennelsize == "Medium":
                 $ks = 2;
+                log::info('Kennel is Medium: $ks set to {ks}', ['ks' => $ks]);
                 break;
-            case "Large":
-                log::info('Kennel is Large: $ks set to 3');
+            case $kennelsize == "Large":
                 $ks = 3;
+                log::info('Kennel is Large: $ks set to {ks}', ['id' => $ks]);
                 break;
         }
 
@@ -165,39 +170,44 @@ class BookingController extends Controller
         ]);
 
         log::info('Getting owner_id from the entered dog_id');
-        $owner_id = Owner::find($request->dog_id)->select('id');
+        $findowner = Dog::find($request->dog_id);
+        $owner_id = $findowner->owner_id;
 
-        log::info('Get size of dog using where function');
-        $dog_size = Dog::where('id', $request->dog_id)->get('size');
-        switch ($dog_size){
-            case "Small":
-                log::info('Dog is small: $ds set to 1');
+        log::info('Get size of dog using find function');
+        $dog_size = Dog::find($request->dog_id);
+        $dogsize = $dog_size->size;
+        log::info('Dog Size is: {dog_size}', ['dog_size' => $dogsize]);
+        switch ($dogsize){
+            case $dogsize == "Small":
                 $ds = 1;
+                log::info('Dog is Small: $ds set to {ds}', ['ds' => $ds]);
                 break;
-            case "Medium":
-                log::info('Dog is medium: $ds set to 2');
+            case $dogsize == "Medium":
                 $ds = 2;
+                log::info('Dog is Medium: $ds set to {ds}', ['ds' => $ds]);
                 break;
-            case "Large":
-                log::info('Dog is Large: $ds set to 3');
+            case $dogsize == "Large":
                 $ds = 3;
+                log::info('Dog is Large: $ds set to {ds}', ['ds' => $ds]);
                 break;
         }
 
-        log::info('Get size of kennel using where function');
-        $kennel_size = Kennel::where('id', $request->kennel_id)->get('kennel_size');
-        switch ($kennel_size){
-            case "Small":
-                log::info('Kennel is Small: $ks set to 1');
+        log::info('Get size of kennel using find function');
+        $kennel_size = Kennel::find($request->kennel_id);
+        $kennelsize = $kennel_size->kennel_size;
+        log::info('Kennel Size is: {kennelsize}', ['kennelsize' => $kennelsize]);
+        switch ($kennelsize){
+            case $kennelsize == "Small":
                 $ks = 1;
+                log::info('Kennel is Small: $ks set to {ks}', ['id' => $ks]);
                 break;
-            case "Medium":
-                log::info('Kennel is Medium: $ks set to 2');
+            case $kennelsize == "Medium":
                 $ks = 2;
+                log::info('Kennel is Medium: $ks set to {ks}', ['id' => $ks]);
                 break;
-            case "Large":
-                log::info('Kennel is Large: $ks set to 3');
+            case $kennelsize == "Large":
                 $ks = 3;
+                log::info('Kennel is Large: $ks set to {ks}', ['id' => $ks]);
                 break;
         }
 
