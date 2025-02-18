@@ -51,3 +51,21 @@ Route::name('booking.')->group(function(){
     Route::put('/booking/{id}', [BookingController::class, 'update'])->name('update');
     Route::delete('/booking/{id}', [BookingController::class, 'destory'])->name('destroy');
 });
+
+Route::name('menu.')->group(function(){
+    Route::get('/owner/menu', function(){
+        return view('owner.menu');
+    })->name('owner');
+
+    Route::get('/dog/menu', function(){
+        return view('dog.menu');
+    })->name('dog');
+
+    Route::get('/kennel/menu', function(){
+        return view('kennel.menu');
+    })->name('menu');
+
+    Route::get('/booking/menu', function(){
+        return view('booking.menu');
+    })->name('booking');
+});
