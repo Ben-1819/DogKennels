@@ -63,7 +63,7 @@ Route::name('menu.')->group(function(){
 
     Route::get('/kennel/menu', function(){
         return view('kennel.menu');
-    })->name('menu');
+    })->name('kennel');
 
     Route::get('/booking/menu', function(){
         return view('booking.menu');
