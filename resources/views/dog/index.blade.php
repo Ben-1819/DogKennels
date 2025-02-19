@@ -52,4 +52,17 @@
             </tbody>
         </table>
     </div>
+
+    <div>
+        <label>Filter dogs by training level</label>
+        <form action="{{route('filter.dog')}}" method="get">
+            @csrf
+            <select name="training_level" onchange="this.form.submit()">
+                <option value="Low">Low</option>
+                <option value="Average">Average</option>
+                <option value="Well Trained">Well Trained</option>
+                <option value="Extremely Well Trained">Extremely Well Trained</option>
+            </select>
+        </form>
+    </div>
 </div>

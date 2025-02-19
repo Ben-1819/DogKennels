@@ -1,10 +1,15 @@
+<?php
+    use App\Models\Owner;
+?>
+
 <x-navbar>
 </x-navbar>
 
 <div>
-    <h1>Dogs with training level of {{$trainingLevel}}</h1>
+    <h1>Dogs filtered by training level</h1>
     <p>Filter by training level:</p>
-    <form>
+    <form action="{{route('filter.dog')}}" method="get">
+        @csrf
         <select name="training_level" onchange="this.form.submit()">
             <option value="Low">Low</option>
             <option value="Average">Average</option>
@@ -31,7 +36,10 @@
                     <tr>
                         <td>{{$dog->id}}</td>
                         <td>{{$dog->name}}</td>
-                        <td>{{$dog->owner->id}}</td>
+                        <?php
+                            $owner = Owner::find($dog->owner_id);
+                        ?>
+                        <td>{{$owner->name}}</td>
                         <td>{{$dog->age}}</td>
                         <td>{{$dog->temperment}}</td>
                         <td>
@@ -46,7 +54,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="8">No dogs with a training level of: {{$trainingLevel}}</td>
+                    <td colspan="8">No dogs with selected training level found</td>
                 </tr>
             @endif
         </tbody>

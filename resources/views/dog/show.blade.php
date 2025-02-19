@@ -2,7 +2,7 @@
 </x-navbar>
 
 <div>
-    <h1 class="title">Profile of Cat: {{$dog->name}}</h1>
+    <h1 class="title">Profile of Dog: {{$dog->name}}</h1>
 
     <div>
         <table class="index-table-large">

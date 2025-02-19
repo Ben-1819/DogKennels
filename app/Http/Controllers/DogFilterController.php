@@ -13,7 +13,7 @@ class DogFilterController extends Controller
         ]);
 
         log::info('Get all dogs where the filter condition is matched');
-        $filteredDogs = Dog::where('training_level', $request->training_level)->with('owner');
+        $filteredDogs = Dog::where('training_level', $request->training_level)->get();
         log::info('Return the dog filtering view showing dogs that match the condition');
         return view('dog.filterTraining', compact('filteredDogs'));
     }
