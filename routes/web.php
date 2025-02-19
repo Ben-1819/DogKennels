@@ -4,6 +4,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\DogController;
 use App\Http\Controllers\KennelController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\currentBookings;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,3 +74,5 @@ Route::name('menu.')->group(function(){
         return view('booking.menu');
     })->name('booking');
 });
+
+Route::get('/current/bookings', [currentBookings::class, 'currentBookings'])->name('booking.current');

@@ -19,4 +19,12 @@
             </a>
         </button>
     </div>
+
+    <div>
+        <button>
+            <a href="{{route('booking.current')}}">
+                Current bookings
+            </a>
+        </button>
+    </div>
 </div>
