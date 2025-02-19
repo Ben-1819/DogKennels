@@ -1,3 +1,7 @@
+<?php
+    use App\Models\Dog;
+    use App\Models\Owner;
+?>
 <x-navbar>
 </x-navbar>
 
@@ -22,8 +26,14 @@
                     @foreach($all_bookings as $booking)
                         <tr>
                             <td>{{$booking->id}}</td>
-                            <td>{{$booking->owner_id}}</td>
-                            <td>{{$booking->dog_id}}</td>
+                            <?php
+                                $owner = Owner::find($booking->owner_id);
+                            ?>
+                            <td>{{$owner->name}}</td>
+                            <?php
+                                $dog = Dog::find($booking->dog_id);
+                            ?>
+                            <td>{{$dog->name}}</td>
                             <td>{{$booking->kennel_id}}</td>
                             <td>{{$booking->booking_start}}</td>
                             <td>{{$booking->booking_end}}</td>

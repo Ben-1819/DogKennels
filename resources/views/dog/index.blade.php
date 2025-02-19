@@ -1,3 +1,6 @@
+<?php
+    use App\Models\Owner;
+?>
 <x-navbar>
 </x-navbar>
 
@@ -9,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Dog ID</th>
-                    <th>Owner ID</th>
+                    <th>Owner Name</th>
                     <th>Dog Name</th>
                     <th>Dog Breed</th>
                     <th>Dog Size</th>
@@ -26,7 +29,10 @@
                     @foreach($all_dogs as $dog)
                         <tr>
                             <td>{{$dog->id}}</td>
-                            <td>{{$dog->owner_id}}</td>
+                            <?php
+                                $owner = Owner::find($dog->owner_id);
+                            ?>
+                            <td>{{$owner->name}}</td>
                             <td>{{$dog->name}}</td>
                             <td>{{$dog->breed}}</td>
                             <td>{{$dog->size}}</td>

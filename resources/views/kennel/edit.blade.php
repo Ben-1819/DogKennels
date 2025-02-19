@@ -45,6 +45,10 @@
                     <option value="Luxury">Luxury</option>
                 </select>
             </div>
+
+            <button>
+                Update
+            </button>
         </form>
     </div>
 </div>

@@ -14,7 +14,7 @@ class KennelController extends Controller
     public function index()
     {
         log::info('Setting the all_kennels variable');
-        $all_kennels = Kennel::all();
+        $all_kennels = Kennel::all()->sortBy('id');
         log::info('Returning view kennel.index with parameter all_kennels');
         return view('kennel.index', compact('all_kennels'));
     }
