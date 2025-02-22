@@ -53,6 +53,14 @@ class OwnerController extends Controller
         return redirect()->route('owner.index');
     }
 
+    /*public function setEmail(Owner $owner){
+        $this->owner = $owner;
+    }
+    public function getEmail(){
+        return $this->owner;
+    }*/
+
+
     /**
      * Display the specified resource.
      */

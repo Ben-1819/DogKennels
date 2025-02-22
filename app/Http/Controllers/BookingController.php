@@ -7,9 +7,12 @@ use App\Models\Dog;
 use App\Models\Kennel;
 use App\Models\Owner;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\IsEmpty;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmation;
 
 class BookingController extends Controller
 {
@@ -39,7 +42,7 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'dog_id' => ['required', 'integer'],
@@ -154,6 +157,9 @@ class BookingController extends Controller
             log::info('Booking start date: {booking_start}', ['booking_start' => $request->booking_start]);
             log::info('Booking end date: {booking_end}', ['booking_end' => $request->booking_end]);
             log::info('Returning to booking index');
+            //$owner = Owner::where('id', $booking->dog_id);
+            //$recipient = $findowner->email;
+            Mail::to("mail@example.com")->send(new BookingConfirmation($booking));
             return redirect()->route('booking.index');
         }
 
