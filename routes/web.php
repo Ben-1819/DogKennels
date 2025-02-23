@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\currentBookings;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\DogFilterController;
+use App\Http\Controllers\BookingNotificationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -79,3 +80,5 @@ Route::name('menu.')->group(function(){
 Route::get('/current/bookings', [currentBookings::class, 'currentBookings'])->name('booking.current');
 
 Route::get('/filter/training', [DogFilterController::class, 'filterDog'])->name('filter.dog');
+
+Route::get("/send-bookingNotification", [BookingNotificationController::class, "sendBookingNotification"])->name("booking.notification");
